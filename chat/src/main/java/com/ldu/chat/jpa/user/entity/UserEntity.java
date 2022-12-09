@@ -16,6 +16,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * User Entity
+ * 
+ * @author ldu
+ *
+ */
 @Getter
 @Setter
 @Builder

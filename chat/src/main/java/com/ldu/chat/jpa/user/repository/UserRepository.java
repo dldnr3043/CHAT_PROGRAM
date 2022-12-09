@@ -5,6 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.ldu.chat.jpa.user.entity.UserEntity;
 
+/**
+ * UserRepository
+ * 
+ * @author ldu
+ *
+ */
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 	

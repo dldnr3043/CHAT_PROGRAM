@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<title>로그인</title>
+<!-- 공통 컴포넌트 관련파일 include -->
+<!-- 해당 화면 script파일 include -->
+<script type="text/javascript" th:src="@{/web/login/js/login-form.js}"></script>
+</head>
+
+<body>
+	<div>
+		<main>
+			<form id="frmLogin" name="frmLogin" method="post" th:action="@{/login-process}">
+				<input type="text" class="" id="username" name="username" placeholder="아이디" title="아이디" maxlength="20" autocomplete="off" />
+				<input type="password" class="" id="password" name="password" placeholder="비밀번호" title="비밀번호" maxlength="20" />
+			</form>
+		</main>
+	</div>
+</body>

@@ -20,10 +20,20 @@ spring:
       properties:
          hibernate.format_sql: true
          hibernate.enable_lazy_load_no_trans: true
-
+   # Http Config Setting
+   http:
+      encoding:
+         charset: UTF-8
+         enabled: true
 #############################################################################
 # logging Config                                                            #
 #############################################################################
 logging:
    level:
       org.hibernate: info
+      
+#############################################################################
+# Server Config                                                             #
+#############################################################################
+server:
+   port: 9443
