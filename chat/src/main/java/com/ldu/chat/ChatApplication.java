@@ -1,11 +1,8 @@
 package com.ldu.chat;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
-import com.ldu.chat.jpa.user.entity.UserEntity;
-import com.ldu.chat.jpa.user.repository.UserRepository;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,13 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatApplication {
 	
 	public static void main(String[] args) {
-//		SpringApplication.run(ChatApplication.class, args);
-		ConfigurableApplicationContext context = SpringApplication.run(ChatApplication.class, args);
-		UserRepository userRepository = context.getBean(UserRepository.class);
-
-		UserEntity user = userRepository.findByUserId("test");
-		
-		log.debug("test ::::::::::::: {}" , user);
+		new SpringApplicationBuilder(ChatApplication.class)
+        .properties("spring.config.location=classpath:/application-${spring.profiles.active}.yml")
+        .web(WebApplicationType.SERVLET)
+        .run(args);
 	}
 
 }
