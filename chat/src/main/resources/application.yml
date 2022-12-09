@@ -1,0 +1,29 @@
+#############################################################################
+# Spring Config                                                             #
+#############################################################################
+spring:
+   # DataSource Config Setting
+   datasource:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521/orcl
+      user-name: 'CHAT'
+      password: 'CHAT'
+   
+   # JPA Config Setting
+   jpa:
+      hibernate:
+         ddl-auto: update
+      generate-ddl: false
+      show-sql: true
+      database: oracle
+      database-platform: org.hibernate.dialect.Oracle12cDialect
+      properties:
+         hibernate.format_sql: true
+         hibernate.enable_lazy_load_no_trans: true
+
+#############################################################################
+# logging Config                                                            #
+#############################################################################
+logging:
+   level:
+      org.hibernate: info
