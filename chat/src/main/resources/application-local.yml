@@ -25,6 +25,11 @@ spring:
       encoding:
          charset: UTF-8
          enabled: true
+         
+   # DevTools Setting
+   devtools:
+      livereload:
+         enabled: true
 #############################################################################
 # logging Config                                                            #
 #############################################################################

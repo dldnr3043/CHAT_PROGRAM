@@ -20,9 +20,9 @@ public class ChatWebRootController {
 	 * WebRoot Page
 	 * @return
 	 */
-	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-	public String moveChatWebRootIndex() {
-		log.debug("moveChatWebRootIndex");
-		return "web/login/login";
-	}
+//	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+//	public String moveChatWebRootIndex() {
+//		log.debug("moveChatWebRootIndex");
+//		return "web/login/login";
+//	}
 }

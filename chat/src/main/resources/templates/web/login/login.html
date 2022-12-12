@@ -1,20 +1,21 @@
-<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<title>�α���</title>
-<!-- ���� ������Ʈ �������� include -->
-<!-- �ش� ȭ�� script���� include -->
-<script type="text/javascript" th:src="@{/web/login/js/login-form.js}"></script>
+<title>로그인</title>
+<!-- 공통 컴포넌트 관련파일 include -->
+<th:block th:include="fragments/headerinc"></th:block>
+<!-- 해당 화면 script파일 include -->
+<script src="/web/login/js/login.js"></script>
 </head>
 
 <body>
 	<div>
-		<main>
+		<main class="chat-login-box">
 			<form id="frmLogin" name="frmLogin" method="post" th:action="@{/login-process}">
-				<input type="text" class="" id="username" name="username" placeholder="���̵�" title="���̵�" maxlength="20" autocomplete="off" />
-				<input type="password" class="" id="password" name="password" placeholder="��й�ȣ" title="��й�ȣ" maxlength="20" />
+				<input type="text" class="" id="username" name="username" placeholder="아이디" title="아이디" maxlength="20" autocomplete="off" />
+				<input type="password" class="" id="password" name="password" placeholder="비밀번호" title="비밀번호" maxlength="20" />
+				<div class=""><button type="button" id="btnLogin" name="btnLogin">로그인</button></div>
 			</form>
 		</main>
 	</div>

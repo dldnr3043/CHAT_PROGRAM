@@ -2,13 +2,16 @@ package com.ldu.chat.jpa.user.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +37,17 @@ public class UserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String userId;			// »ç¿ëÀÚid
-	private String userName;		// »ç¿ëÀÚ¸í
-	private String userPassword;	// »ç¿ëÀÚºñ¹Ğ¹øÈ£
+	private String userId;			// ì‚¬ìš©ìid
+	private String userName;		// ì‚¬ìš©ìëª…
+	private String userPassword;	// ë¹„ë°€ë²ˆí˜¸
+	private String authCd;			// ì‚¬ìš©ìê¶Œí•œ (ADMIN, USER)
+	private String useYn;			// ì‚¬ìš©ì—¬ë¶€
 	
 	@CreationTimestamp
-	private LocalDateTime regDate;	// µî·ÏÀÏ½Ã
+	private LocalDateTime regDate;	// ìƒì„±ì¼ì‹œ
 	@UpdateTimestamp
-	private LocalDateTime updDate;	// ¼öÁ¤ÀÏ½Ã
+	private LocalDateTime updDate;	// ìˆ˜ì •ì¼ì‹œ
+	
+	@Transient
+    private Collection<? extends GrantedAuthority> authorities;
 }
