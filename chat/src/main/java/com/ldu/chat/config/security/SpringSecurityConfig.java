@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.web.cors.CorsUtils;
 
 import com.ldu.chat.config.property.ChatProjectConfig;
-import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
+import com.ldu.chat.web.login.utils.ChatWebLoginRoleEnum;
 
 /**
  * Spring Security Config
@@ -36,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 		    .antMatchers("/signup").permitAll()
-		    .antMatchers("/**").hasRole(SpringSecurityRoleEnum.CODES.ADMIN)
+		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .anyRequest()
 		    .authenticated()
 		    .and()
@@ -91,7 +91,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationFailureHandler authenticationFailureHandler() throws Exception
     {
         ChatAuthenticationFailureHandler failureHandler = new ChatAuthenticationFailureHandler();
-        failureHandler.setDefaultFailureUrl("/login");
+        failureHandler.setDefaultFailureUrl("/chat/web/login");
         failureHandler.setUseForward(true);
         return failureHandler;
     }

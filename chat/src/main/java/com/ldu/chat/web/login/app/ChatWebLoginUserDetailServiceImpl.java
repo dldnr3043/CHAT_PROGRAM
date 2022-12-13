@@ -9,10 +9,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-import com.ldu.chat.jpa.user.entity.UserEntity;
-import com.ldu.chat.jpa.user.repository.UserRepository;
-import com.ldu.chat.web.login.domain.SpringSecurityUserDomain;
-import com.ldu.chat.web.login.utils.SpringSecurityAuthUtils;
+import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
+import com.ldu.chat.jpa.user.repository.ChatJpaUserRepository;
+import com.ldu.chat.web.login.dto.ChatWebLoginUserDto;
+import com.ldu.chat.web.login.utils.ChatWebLoginAuthUtils;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +20,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class ChatUserDetailServiceImpl implements UserDetailsService {
+public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 
-	private final UserRepository 		  userRepository;
-	private final SpringSecurityAuthUtils springSecurityAuthUtils;
+	private final ChatJpaUserRepository 		  userRepository;
+	private final ChatWebLoginAuthUtils springSecurityAuthUtils;
 	
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		Optional<UserEntity> user = userRepository.findById(userId);
+		Optional<ChatJpaUserEntity> user = userRepository.findById(userId);
 		
 		if(ObjectUtils.isEmpty(user))
         {
@@ -41,7 +41,7 @@ public class ChatUserDetailServiceImpl implements UserDetailsService {
 		boolean isCredentialsNonExpired = true;
 		boolean isAccountNonLocked = true;
 		
-		SpringSecurityUserDomain springSecurityUserDomain = new SpringSecurityUserDomain(user.get().getUserId()
+		ChatWebLoginUserDto springSecurityUserDomain = new ChatWebLoginUserDto(user.get().getUserId()
 																					  , user.get().getUserName()
 																					  , user.get().getUserPassword()
 																					  , user.get().getAuthCd()

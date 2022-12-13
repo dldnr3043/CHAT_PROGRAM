@@ -1,4 +1,4 @@
-package com.ldu.chat.web.login.domain;
+package com.ldu.chat.web.login.dto;
 
 import java.util.Collection;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class SpringSecurityUserDomain extends User {
+public class ChatWebLoginUserDto extends User {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class SpringSecurityUserDomain extends User {
 	 * @param accountNonLocked
 	 * @param authorities
 	 */
-	public SpringSecurityUserDomain(String username
+	public ChatWebLoginUserDto(String username
 								  , String usrname
 								  , String password
 								  , String authCd

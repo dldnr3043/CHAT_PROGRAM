@@ -2,7 +2,7 @@ package com.ldu.chat.web.login.utils;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public enum SpringSecurityRoleEnum implements GrantedAuthority {
+public enum ChatWebLoginRoleEnum implements GrantedAuthority {
 	ADMIN  (ROLES.ADMIN  , "관리자"),
 	USER   (ROLES.USER   , "사용자");
 
@@ -27,7 +27,7 @@ public enum SpringSecurityRoleEnum implements GrantedAuthority {
 	private String authority;
 	private String description;
 	
-	private SpringSecurityRoleEnum(String authority, String description) {
+	private ChatWebLoginRoleEnum(String authority, String description) {
 		this.authority = authority;
 		this.description = description;
 	}
