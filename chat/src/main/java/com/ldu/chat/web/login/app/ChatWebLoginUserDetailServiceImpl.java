@@ -41,7 +41,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 		boolean isCredentialsNonExpired = true;
 		boolean isAccountNonLocked = true;
 		
-		ChatWebLoginUserDto springSecurityUserDomain = new ChatWebLoginUserDto(user.get().getUserId()
+		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.get().getUserId()
 																					  , user.get().getUserName()
 																					  , user.get().getUserPassword()
 																					  , user.get().getAuthCd()
@@ -52,7 +52,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 																					  , isAccountNonLocked
 																					  , user.get().getAuthorities());
 		
-		return springSecurityUserDomain;
+		return chatWebLoginUserDto;
 	}
 
 }
