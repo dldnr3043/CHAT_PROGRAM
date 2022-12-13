@@ -51,6 +51,10 @@ spring:
             max-active: 10
             max-idle: 10
             min-idle: 2
+#         cluster:
+#            refresh:
+#               period: 60s         # cluster topology refresh period (topology : 클러스터 구성)
+#               adaptive: true      # 적응형 topology refresh 사용여부
                   
 #############################################################################
 # logging Config                                                            #
