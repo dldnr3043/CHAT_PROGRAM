@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsUtils;
 
-import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
+import com.ldu.chat.web.login.utils.ChatWebLoginRoleEnum;
 
 /**
  * Spring Security Config
@@ -33,7 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 		    .antMatchers("/signup").permitAll()
-		    .antMatchers("/**").hasRole(SpringSecurityRoleEnum.CODES.ADMIN)
+		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .anyRequest()
 		    .authenticated()
 		    .and()
