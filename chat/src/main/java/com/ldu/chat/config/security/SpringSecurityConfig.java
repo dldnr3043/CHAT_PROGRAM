@@ -41,7 +41,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .authenticated()
 		    .and()
 		    .formLogin()
-		    .loginPage("/login")
+		    .loginPage("/chat/web/login")
 		    .usernameParameter("username")
 		    .passwordParameter("password")
 		    .loginProcessingUrl("/login-process")
