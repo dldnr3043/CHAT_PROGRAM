@@ -15,7 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 인증이 성공했을 때 수행될 핸들러(추상 클래스가 아닌 인터페이스를 구현해도 된다.) Or Interface - AuthenticationSuccessHandler
- *
+ * 
+ * @author ldu
  */
 @Slf4j
 public class ChatAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
