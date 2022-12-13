@@ -32,7 +32,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-		    .antMatchers("/signup").permitAll()
+		    .antMatchers("/chat/web/signup").permitAll()
 		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .anyRequest()
 		    .authenticated()

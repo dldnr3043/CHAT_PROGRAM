@@ -2,3 +2,9 @@
 window.addEventListener('DOMContentLoaded', function(){
 	try{domReady();}catch(E){ console.log("domReady error=", E); }
 });
+
+var ChatCommon = {
+	moveTo : function(url) {
+		window.location.href = url;
+	},
+}
