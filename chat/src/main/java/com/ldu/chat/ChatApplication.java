@@ -4,8 +4,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Chatting Program
  * 

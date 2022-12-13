@@ -22,12 +22,14 @@ import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	
+	
 	/**
 	 * HttpSecurity Filter
 	 */
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and()
+		http
 			.authorizeRequests()
 			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 		    .antMatchers("/signup").permitAll()
@@ -69,7 +71,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler authenticationSuccessHandler() throws Exception
     {
         ChatAuthenticationSuccessHandler successHandler = new ChatAuthenticationSuccessHandler();
-        successHandler.setDefaultTargetUrl("/test");
+        successHandler.setDefaultTargetUrl("/main");
         successHandler.setAlwaysUseDefaultTargetUrl(true);
         return successHandler;
     }

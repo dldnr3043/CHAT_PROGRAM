@@ -39,7 +39,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	
 	// DataSource
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	
 	// JPA
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -49,6 +49,10 @@ dependencies {
 	
 	// devtools : 정적소스 재시작 없이 반영
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.session:spring-session-data-redis'
 }
 
 tasks.named('test') {
