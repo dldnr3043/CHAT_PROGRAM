@@ -13,7 +13,7 @@ public class ChatWebLoginController {
 	 * Login Page
 	 * @return
 	 */
-	@GetMapping(value = "/login")
+	@GetMapping(value = "/chat/web/login")
 	public String moveLogin() {
 		log.debug("moveLogin");
 		return "web/login/login";

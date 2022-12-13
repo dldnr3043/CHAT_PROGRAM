@@ -1,4 +1,4 @@
-package com.ldu.chat.web.main.controller;
+package com.ldu.chat.web.signup.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class ChatWebMainController {
+public class ChatWebSignupController {
 	/**
 	 * Main Page
 	 * @return
 	 */
-	@GetMapping(value = "/chat/web/main")
-	public String moveMain() {
-		log.debug("moveMain");
-		return "web/main/main";
+	@GetMapping(value = "/chat/web/signup")
+	public String moveSignup() {
+		log.debug("moveSignup");
+		return "web/signup/signup";
 	}
 }

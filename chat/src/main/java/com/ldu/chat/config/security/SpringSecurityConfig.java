@@ -71,7 +71,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler authenticationSuccessHandler() throws Exception
     {
         ChatAuthenticationSuccessHandler successHandler = new ChatAuthenticationSuccessHandler();
-        successHandler.setDefaultTargetUrl("/main");
+        successHandler.setDefaultTargetUrl("/chat/web/main");
         successHandler.setAlwaysUseDefaultTargetUrl(true);
         return successHandler;
     }
@@ -88,7 +88,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationFailureHandler authenticationFailureHandler() throws Exception
     {
         ChatAuthenticationFailureHandler failureHandler = new ChatAuthenticationFailureHandler();
-        failureHandler.setDefaultFailureUrl("/login");
+        failureHandler.setDefaultFailureUrl("/chat/web/login");
         failureHandler.setUseForward(true);
         return failureHandler;
     }
