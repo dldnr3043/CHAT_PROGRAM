@@ -1,5 +1,6 @@
 package com.ldu.chat.config.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsUtils;
 
+import com.ldu.chat.config.property.ChatProjectConfig;
 import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
 
 /**
@@ -22,7 +24,8 @@ import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	
+	@Autowired
+	private ChatProjectConfig chatProjectConfig;
 	
 	/**
 	 * HttpSecurity Filter
@@ -71,7 +74,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler authenticationSuccessHandler() throws Exception
     {
         ChatAuthenticationSuccessHandler successHandler = new ChatAuthenticationSuccessHandler();
-        successHandler.setDefaultTargetUrl("/main");
+        successHandler.setDefaultTargetUrl(chatProjectConfig.getServiceUrl() + chatProjectConfig.getMainPath());
         successHandler.setAlwaysUseDefaultTargetUrl(true);
         return successHandler;
     }
