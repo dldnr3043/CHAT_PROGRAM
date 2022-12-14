@@ -9,10 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.web.cors.CorsUtils;
 
 import com.ldu.chat.config.property.ChatProjectConfig;
-import com.ldu.chat.web.login.utils.SpringSecurityRoleEnum;
+import com.ldu.chat.web.login.utils.ChatWebLoginRoleEnum;
 
 /**
  * Spring Security Config
@@ -34,14 +33,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-		    .antMatchers("/signup").permitAll()
-		    .antMatchers("/**").hasRole(SpringSecurityRoleEnum.CODES.ADMIN)
+		    .antMatchers("/chat/web/signup").permitAll()
+		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
+		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
 		    .anyRequest()
 		    .authenticated()
 		    .and()
 		    .formLogin()
-		    .loginPage("/login")
+		    .loginPage("/chat/web/login")
 		    .usernameParameter("username")
 		    .passwordParameter("password")
 		    .loginProcessingUrl("/login-process")
@@ -91,7 +90,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationFailureHandler authenticationFailureHandler() throws Exception
     {
         ChatAuthenticationFailureHandler failureHandler = new ChatAuthenticationFailureHandler();
-        failureHandler.setDefaultFailureUrl("/login");
+        failureHandler.setDefaultFailureUrl("/chat/web/login");
         failureHandler.setUseForward(true);
         return failureHandler;
     }

@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<title>회원가입</title>
+<!-- 공통 컴포넌트 관련파일 include -->
+<th:block th:include="fragments/headerinc"></th:block>
+<!-- 해당 화면 script파일 include -->
+<script src="/web/signup/js/signup.js"></script>
+</head>
+
+<body>
+	<div>
+		<main class="chat-login-box">
+			<form id="frmSignup" name="frmSignup" method="post" th:action="@{/login-process}">
+				<div><input type="text" class="" id="username" name="username" placeholder="아이디" title="아이디" maxlength="20" autocomplete="off" /></div>
+				<div><input type="password" class="" id="password" name="password" placeholder="비밀번호" title="비밀번호" maxlength="20" /></div>
+				<div><input type="text" class="" id="email" name="email" placeholder="이메일" title="이메일" maxlength="100" /></div>
+				
+				<div class="">
+					<button type="button" id="btnSignup" name="btnSignup">회원가입</button>
+					<button type="button" id="btnBack" name="btnBack">이전</button>
+				</div>
+			</form>
+		</main>
+	</div>
+</body>

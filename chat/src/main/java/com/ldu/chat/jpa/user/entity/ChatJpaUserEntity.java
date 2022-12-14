@@ -32,7 +32,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name="TB_USER", schema="CHAT")
-public class UserEntity implements Serializable {
+public class ChatJpaUserEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -42,6 +42,7 @@ public class UserEntity implements Serializable {
 	private String userPassword;	// 비밀번호
 	private String authCd;			// 사용자권한 (ADMIN, USER)
 	private String useYn;			// 사용여부
+	private String custChannelId;	// 고객사id
 	
 	@CreationTimestamp
 	private LocalDateTime regDate;	// 생성일시

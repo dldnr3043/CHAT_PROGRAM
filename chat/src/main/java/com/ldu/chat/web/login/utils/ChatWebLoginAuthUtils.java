@@ -8,8 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.ldu.chat.jpa.user.entity.UserEntity;
-import com.ldu.chat.jpa.user.repository.UserRepository;
+import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
+import com.ldu.chat.jpa.user.repository.ChatJpaUserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,22 +22,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class SpringSecurityAuthUtils {
+public class ChatWebLoginAuthUtils {
 	
 	/**
      * 
      * @param username
      * @return
      */
-    public Collection<? extends GrantedAuthority> createAuthorities(UserEntity user)
+    public Collection<? extends GrantedAuthority> createAuthorities(ChatJpaUserEntity user)
     {
     	final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
     	
+    	// 관리자인 경우 일반사용자 권한도 획득
     	if("ADMIN".equals(user.getAuthCd())) {
-    		authorities.add(new SimpleGrantedAuthority(SpringSecurityRoleEnum.ROLES.ADMIN));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.ADMIN));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
     	}
     	else if("USER".equals(user.getAuthCd())) {
-    		authorities.add(new SimpleGrantedAuthority(SpringSecurityRoleEnum.ROLES.USER));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
     	}
     	
         return authorities;         
