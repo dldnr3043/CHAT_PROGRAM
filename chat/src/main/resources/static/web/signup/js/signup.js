@@ -86,7 +86,8 @@ var ChatSignup={
  * Event Object : 화면에 디자인 된 버튼 및 오브젝트 이벤트와 호출할 함수를 정의한다.
  ********************************************************************************/
 	defineEvent: function(){
-		document.getElementById("btnLogin").addEventListener("click", function(e) {ChatSignup.processLogin();}); // login
+		document.getElementById("btnBack").addEventListener("click", function(e) {ChatCommon.moveTo("/chat/web/login");}); // 이전
+		document.getElementById("btnSignup").addEventListener("click", function(e) {ChatSignup.processSignup()}); // Signup
 	},
 /********************************************************************************
  * Main Functions: 화면상에 주요 기능을 처리하는 함수를 정의한다.
@@ -105,7 +106,7 @@ var ChatSignup={
 // PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
 //-------------------------------------------------------------------------------
 	//로그인 처리(자체 인증 프로세스 : Spring Security Form)
-	processLogin: function() {
+	processSignup: function() {
 		document.getElementById("frmLogin").submit();
 	},
 		

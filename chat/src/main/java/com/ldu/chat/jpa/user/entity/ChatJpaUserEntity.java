@@ -42,6 +42,7 @@ public class ChatJpaUserEntity implements Serializable {
 	private String userPassword;	// 비밀번호
 	private String authCd;			// 사용자권한 (ADMIN, USER)
 	private String useYn;			// 사용여부
+	private String custChannelId;	// 고객사id
 	
 	@CreationTimestamp
 	private LocalDateTime regDate;	// 생성일시

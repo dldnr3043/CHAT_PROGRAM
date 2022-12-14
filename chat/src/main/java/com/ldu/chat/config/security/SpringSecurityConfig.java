@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.web.cors.CorsUtils;
 
 import com.ldu.chat.config.property.ChatProjectConfig;
 import com.ldu.chat.web.login.utils.ChatWebLoginRoleEnum;
@@ -34,9 +33,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 		    .antMatchers("/chat/web/signup").permitAll()
-		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
+		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
+		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
 		    .anyRequest()
 		    .authenticated()
 		    .and()

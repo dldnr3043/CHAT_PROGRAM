@@ -33,8 +33,10 @@ public class ChatWebLoginAuthUtils {
     {
     	final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
     	
+    	// 관리자인 경우 일반사용자 권한도 획득
     	if("ADMIN".equals(user.getAuthCd())) {
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.ADMIN));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
     	}
     	else if("USER".equals(user.getAuthCd())) {
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
