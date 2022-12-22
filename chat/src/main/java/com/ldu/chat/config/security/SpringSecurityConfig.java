@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import com.ldu.chat.config.property.ChatProjectConfig;
 import com.ldu.chat.web.login.utils.ChatWebLoginRoleEnum;
@@ -32,21 +33,36 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http
+			// url에 대한 authentication 처리
 			.authorizeRequests()
 		    .antMatchers("/chat/web/signup").permitAll()
 		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
 		    .anyRequest()
 		    .authenticated()
+		    // login 설정
 		    .and()
 		    .formLogin()
-		    .loginPage("/chat/web/login")
+		    .loginPage(chatProjectConfig.getLoginPath())
 		    .usernameParameter("username")
 		    .passwordParameter("password")
 		    .loginProcessingUrl("/login-process")
 		    .successHandler(authenticationSuccessHandler())
             .failureHandler(authenticationFailureHandler())
-            .permitAll();
+            .permitAll()
+            // logout 설정
+            .and()
+            .logout()
+            .logoutUrl(chatProjectConfig.getLogoutPath())
+            .deleteCookies("LDUSESSIONID")
+            .logoutSuccessHandler(logoutSuccessHandler())
+            .invalidateHttpSession(true)
+            .permitAll()
+            // X-Frame-Options Click Jacking default로 막기 때문에 iframe 에러 그래서 같은 도메인은 허용
+            .and()
+            .headers().frameOptions().sameOrigin(); 
+		
+		
 	}
 	
 	/**
@@ -73,7 +89,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler authenticationSuccessHandler() throws Exception
     {
         ChatAuthenticationSuccessHandler successHandler = new ChatAuthenticationSuccessHandler();
-        successHandler.setDefaultTargetUrl(chatProjectConfig.getServiceUrl() + chatProjectConfig.getMainPath());
+        successHandler.setDefaultTargetUrl(chatProjectConfig.getMainPath());
         successHandler.setAlwaysUseDefaultTargetUrl(true);
         return successHandler;
     }
@@ -90,8 +106,25 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationFailureHandler authenticationFailureHandler() throws Exception
     {
         ChatAuthenticationFailureHandler failureHandler = new ChatAuthenticationFailureHandler();
-        failureHandler.setDefaultFailureUrl("/chat/web/login");
+        failureHandler.setDefaultFailureUrl(chatProjectConfig.getLoginPath());
         failureHandler.setUseForward(true);
         return failureHandler;
+    }
+    
+    /**
+     * LogoutSuccessHandler bean register
+     * 
+     * 로그아웃에 성공했을 시 수행되는 핸들러이다.
+     * SimpleUrlLogoutSuccessHandler를 상속한 TeletalkLogoutSuccessHandler를 등록해주었다.
+     * 역시 성공시 로그인 페이지로 리다이렉트 하는 역할을 수행한다.
+     * @return logoutSuccessHandler
+     */
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() throws Exception
+    {
+    	ChatLogoutSuccessHandler logoutSuccessHandler = new ChatLogoutSuccessHandler();
+        logoutSuccessHandler.setDefaultTargetUrl(chatProjectConfig.getLoginPath());
+        logoutSuccessHandler.setAlwaysUseDefaultTargetUrl(true);
+        return logoutSuccessHandler;
     }
 }

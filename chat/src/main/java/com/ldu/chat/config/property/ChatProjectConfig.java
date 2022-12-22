@@ -12,4 +12,6 @@ public class ChatProjectConfig {
 	private String serviceUrl;
 	private String publicUrl;
 	private String mainPath;
+	private String loginPath;
+	private String logoutPath;
 }

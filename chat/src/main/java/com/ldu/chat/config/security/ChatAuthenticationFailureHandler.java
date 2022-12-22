@@ -31,5 +31,6 @@ public class ChatAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
         
         log.debug("login fail :::::::::::::::::::::::::");
 
+        super.onAuthenticationFailure(request, response, exception);
     }
 }
