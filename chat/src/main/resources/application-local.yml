@@ -72,7 +72,7 @@ server:
       # Session setting
       session:
          cookie:
-            name: 'LDUSESSIONID'
+            name: 'LDUSESSIONID'   # Browser 내 cookie명 설정
             http-only: true
             secure: true
       tracking-mode: cookie
