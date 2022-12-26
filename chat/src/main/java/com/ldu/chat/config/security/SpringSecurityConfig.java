@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -36,6 +38,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			// url에 대한 authentication 처리
 			.authorizeRequests()
 		    .antMatchers("/chat/web/signup").permitAll()
+		    .antMatchers("/api/chat/signup/process").permitAll()
 		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
 		    .anyRequest()
@@ -60,7 +63,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             // X-Frame-Options Click Jacking default로 막기 때문에 iframe 에러 그래서 같은 도메인은 허용
             .and()
-            .headers().frameOptions().sameOrigin(); 
+            .headers().frameOptions().sameOrigin()
+            // csrf 설정
+            .and()
+            .csrf().disable(); 
 		
 		
 	}
@@ -126,5 +132,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         logoutSuccessHandler.setDefaultTargetUrl(chatProjectConfig.getLoginPath());
         logoutSuccessHandler.setAlwaysUseDefaultTargetUrl(true);
         return logoutSuccessHandler;
+    }
+    
+    /**
+     * BCryptPasswordEncoder를 통해 비밀번호를 암호화하여 저장
+     * 
+     * @return
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

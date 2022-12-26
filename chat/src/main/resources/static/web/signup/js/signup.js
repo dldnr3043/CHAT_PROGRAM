@@ -1,5 +1,5 @@
 /********************************************************************************
-* @classDescription 로그인 하기
+* @classDescription 회원가입 하기
 * @author LDU.
 * @version 1.0
 * -------------------------------------------------------------------------------
@@ -106,8 +106,24 @@ var ChatSignup={
 // PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
 //-------------------------------------------------------------------------------
 	//로그인 처리(자체 인증 프로세스 : Spring Security Form)
-	processSignup: function() {
-		document.getElementById("frmLogin").submit();
+	processSignup : function() {
+		var jsonParams = new Object();
+		
+		jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
+		jsonParams.FIRST_NAME = document.getElementById("inputFirstName").value;
+		jsonParams.LAST_NAME  = document.getElementById("inputLastName").value;
+		jsonParams.PASSWORD   = document.getElementById("inputPassword").value;
+		
+		var jsonReturnParams  = ChatApi.axiosPost("/api/chat/signup/process", jsonParams);
+		
+		// success
+		if(!jsonReturnParams.ERROR_FLAG) {
+			ChatCommon.moveTo("/chat/web/login");
+		}
+		// fail
+		else {
+			
+		}
 	},
 		
 //-------------------------------------------------------------------------------

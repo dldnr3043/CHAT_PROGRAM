@@ -34,14 +34,14 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
             throw new BadCredentialsException("Invalid username or password :::");
         }
 		
-		user.get().setAuthorities(springSecurityAuthUtils.createAuthorities(user.get()));
+		user.get().grantAuthorities(springSecurityAuthUtils.createAuthorities(user.get()));
 		
 		boolean isEnabled = "Y".equals(user.get().getUseYn()) ? true : false;
 		boolean isAccountNonExpired = true;
 		boolean isCredentialsNonExpired = true;
 		boolean isAccountNonLocked = true;
 		
-		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.get().getUserId()
+		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.get().getUserEmail()
 																					  , user.get().getUserName()
 																					  , user.get().getUserPassword()
 																					  , user.get().getAuthCd()
