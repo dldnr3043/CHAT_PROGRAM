@@ -87,7 +87,8 @@ var ChatSignup={
  ********************************************************************************/
 	defineEvent: function(){
 		document.getElementById("btnBack").addEventListener("click", function(e) {ChatCommon.moveTo("/chat/web/login");}); // 이전
-		document.getElementById("btnSignup").addEventListener("click", function(e) {ChatSignup.processSignup()}); // Signup
+		document.getElementById("btnSignup").addEventListener("click", function(e) {ChatSignup.processSignup();}); // Signup
+
 	},
 /********************************************************************************
  * Main Functions: 화면상에 주요 기능을 처리하는 함수를 정의한다.
