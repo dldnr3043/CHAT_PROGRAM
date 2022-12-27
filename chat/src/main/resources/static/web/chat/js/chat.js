@@ -1,12 +1,12 @@
 /********************************************************************************
-* @classDescription 회원가입 하기
+* @classDescription 채팅화면
 * @author LDU.
 * @version 1.0
 * -------------------------------------------------------------------------------
 * Modification Information
 * Date              Developer           Content
 * ----------        -------------       -------------------------
-* 2022.12.13                   이동욱           			 신규생성 
+* 2022.12.27                  이동욱           			신규생성 
 * -------------------------------------------------------------------------------
 * Copyright (C) 2022 by LDU. All rights reserved.
 *********************************************************************************/
@@ -22,9 +22,9 @@ const globalconstiable = "";
 function domReady()
 {
 	//페이지 초기화 처리
-	ChatSignup.initPage();
+	Chat.initPage();
 	//이벤트 정의	
-	ChatSignup.defineEvent();
+	Chat.defineEvent();
 };
 
 /**
@@ -32,7 +32,7 @@ function domReady()
  * 스크립트를 클래스 기반의 구조체로 정의하기 위해 해당 JavaScript의 클래스명은 파일명으로 정의한다.
  * @classDescription : 
  */
-const ChatSignup={
+const Chat={
 /********************************************************************************
  * InitPage Function : 화면이 초기 로드 시점에 처리할 사항을 정의한다.
  ********************************************************************************/
@@ -80,15 +80,13 @@ const ChatSignup={
 // LOAD_DATA: 초기데이터 로드를 위한 함수 정의 [기본함수명:initData + (구분단어)]
 //-------------------------------------------------------------------------------
 	initData: function(){
+		Chat.selectRtnChatListByUserId();
 	},	
 	
 /********************************************************************************
  * Event Object : 화면에 디자인 된 버튼 및 오브젝트 이벤트와 호출할 함수를 정의한다.
  ********************************************************************************/
 	defineEvent: function(){
-		document.getElementById("btnBack").addEventListener("click", function(e) {ChatCommon.moveTo("/chat/web/login");}); // 이전
-		document.getElementById("btnSignup").addEventListener("click", function(e) {ChatSignup.processSignup();}); // Signup
-
 	},
 /********************************************************************************
  * Main Functions: 화면상에 주요 기능을 처리하는 함수를 정의한다.
@@ -101,21 +99,12 @@ const ChatSignup={
 //--------------------------------------------------------------------------------
 // SELECT: 조회 데이터 처리에 대한 함수 정의 [기본함수명:selectRtn + (구분단어)]
 //--------------------------------------------------------------------------------
-	selectRtn: function(){
-	},
-//-------------------------------------------------------------------------------
-// PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
-//-------------------------------------------------------------------------------
-	//로그인 처리(자체 인증 프로세스 : Spring Security Form)
-	processSignup : function() {
+	selectRtnChatListByUserId: function(){
 		const jsonParams = new Object();
 		
-		jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
-		jsonParams.FIRST_NAME = document.getElementById("inputFirstName").value;
-		jsonParams.LAST_NAME  = document.getElementById("inputLastName").value;
-		jsonParams.PASSWORD   = document.getElementById("inputPassword").value;
+		//jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
 		
-		const jsonReturnParams  = ChatApi.axiosPost("/api/chat/signup/process", jsonParams);
+		const jsonReturnParams  = ChatApi.axiosPost("/api/chat/chat/selectChatListByUserId", jsonParams);
 		
 		// success
 		if(!jsonReturnParams.ERROR_FLAG) {
@@ -125,6 +114,11 @@ const ChatSignup={
 		else {
 			
 		}
+	},
+//-------------------------------------------------------------------------------
+// PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
+//-------------------------------------------------------------------------------
+	processRtn: function() {
 	},
 		
 //-------------------------------------------------------------------------------
@@ -146,9 +140,6 @@ const ChatSignup={
 /********************************************************************************
  * User Functions: 별도 화면 처리를 위해 필요한 함수를 정의한다. 
  ********************************************************************************/
-
-	userFunctions: function(event){
-	},
 
 /********************************************************************************
  * function Sample

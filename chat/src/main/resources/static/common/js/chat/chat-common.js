@@ -3,8 +3,13 @@ window.addEventListener('DOMContentLoaded', function(){
 	try{domReady();}catch(E){ console.log("domReady error=", E); }
 });
 
-var ChatCommon = {
+const ChatCommon = {
 	moveTo : function(url) {
 		window.location.href = url;
+	},
+	
+	moveToIframe : function(url) {
+		const iframeElement = document.getElementById('iframe');
+		iframeElement.setAttribute('src', url);
 	},
 }
