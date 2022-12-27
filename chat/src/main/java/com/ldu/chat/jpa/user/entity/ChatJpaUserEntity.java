@@ -13,23 +13,30 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * User Entity
+ * 
+ * jpa는 기본생성자를 요구
+ * ㄴ @Entity에는 기본생성자 자동 생성이 있음
+ * ㄴ 그런데도 @NoArgsConstructor를 사용하는 이유는 접근제어를 하기 위해
+ * ㄴ 접근제어 이유는 데이터 영속성(real db data & entity 일관성)을 위해 -> 그래서 @Setter가 아닌 @Builder 사용
+ * ㄴ 접근제어가 private이 아니고 protected인 이유는 jpa가 받아들이는 최대 수준 생성자이기 때문
+ * ㄴ @AllArgsConstructor를 사용하지 않으면 @NoArgsConstructor 접근제어 때문에 @Builder에서 에러
+ * ㄴ 그래서 @AllArgsConstructor 사용
  * 
  * @author ldu
  *
  */
 @Getter
-@Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="TB_USER", schema="CHAT")
 public class ChatJpaUserEntity implements Serializable {
@@ -37,7 +44,7 @@ public class ChatJpaUserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String userId;			// 사용자id
+	private String userEmail;		// 사용자 email
 	private String userName;		// 사용자명
 	private String userPassword;	// 비밀번호
 	private String authCd;			// 사용자권한 (ADMIN, USER)
@@ -51,4 +58,8 @@ public class ChatJpaUserEntity implements Serializable {
 	
 	@Transient
     private Collection<? extends GrantedAuthority> authorities;
+	
+	public void grantAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
 }
