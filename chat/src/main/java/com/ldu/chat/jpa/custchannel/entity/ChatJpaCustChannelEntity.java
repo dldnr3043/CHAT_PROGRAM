@@ -1,5 +1,6 @@
 package com.ldu.chat.jpa.custchannel.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -32,7 +33,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name="TB_CUST_CHANNEL", schema="CHAT")
-public class ChatJpaCustChannelEntity {
+public class ChatJpaCustChannelEntity implements Serializable {
+	private static final long serialVersionUID = 7235445621609666597L;
+	
 	@Id
 	private String custChannelId;			// 고객사id
 	private String custChannelName;		    // 고객사명

@@ -1,4 +1,4 @@
-const ChatApi = {
+var ChatApi = {
 	axiosPost : function(url, jsonData) {
 		return axios({
 			method  : 'post'

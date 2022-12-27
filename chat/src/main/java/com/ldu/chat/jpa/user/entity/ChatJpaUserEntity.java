@@ -41,7 +41,7 @@ import lombok.NoArgsConstructor;
 @Table(name="TB_USER", schema="CHAT")
 public class ChatJpaUserEntity implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2168393822824485794L;
 	
 	@Id
 	private String userEmail;		// 사용자 email

@@ -24,15 +24,15 @@ public class ChatWebSignupRestController {
 	private final ChatJpaUserRepository userRepository;
 	
 	/**
-	 * test
+	 * 회원가입
 	 * 
 	 * @param mjsonParams
 	 * @return
 	 * @throws Exception
 	 */
-    @ApiOperation(value="test", notes="test")
+    @ApiOperation(value="회원가입", notes="회원가입")
     @PostMapping("/api/chat/signup/process")
-    public Object selectRtnPageAspCustList(@RequestBody JSONObject jsonParams) throws Exception
+    public Object processRtnSignUp(@RequestBody JSONObject jsonParams) throws Exception
     {
     	JSONObject jsonReturnParams = new JSONObject();
     	String userEmail    = jsonParams.getString("USER_EMAIL");
@@ -51,9 +51,14 @@ public class ChatWebSignupRestController {
     													.build();
     			
     	
-    	userRepository.save(userEntity);
-    	
+    	ChatJpaUserEntity result = userRepository.save(userEntity);
+    	if(result != null) {
     		jsonReturnParams.put("ERROR_FLAG", false);
+    	}
+    	else {
+    		jsonReturnParams.put("ERROR_FLAG", true);
+    	}
+    		
     	
         //최종결과값 반환
         return jsonReturnParams;

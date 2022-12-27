@@ -14,7 +14,7 @@
 /********************************************************************************
  * Global constiable : 스크립트 영역에서 모두 접근할 수 있는 전역변수를 해당 영역에 모두 정의한다.
  ********************************************************************************/
-const globalconstiable = "";
+var globalconstiable = "";
 
 /********************************************************************************
  * Document Ready : jquery에서 제공하는 함수를 이용하여 화면이 로드될 때 처리할 함수를 정의한다.
@@ -32,7 +32,7 @@ function domReady()
  * 스크립트를 클래스 기반의 구조체로 정의하기 위해 해당 JavaScript의 클래스명은 파일명으로 정의한다.
  * @classDescription : 
  */
-const Chat={
+var Chat={
 /********************************************************************************
  * InitPage Function : 화면이 초기 로드 시점에 처리할 사항을 정의한다.
  ********************************************************************************/
@@ -104,7 +104,7 @@ const Chat={
 		
 		//jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
 		
-		const jsonReturnParams  = ChatApi.axiosPost("/api/chat/chat/selectChatListByUserId", jsonParams);
+		/*const jsonReturnParams  = ChatApi.axiosPost("/api/chat/chat/selectRtnChatListByUserId", jsonParams);
 		
 		// success
 		if(!jsonReturnParams.ERROR_FLAG) {
@@ -113,7 +113,7 @@ const Chat={
 		// fail
 		else {
 			
-		}
+		}*/
 	},
 //-------------------------------------------------------------------------------
 // PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]

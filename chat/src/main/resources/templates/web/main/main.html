@@ -3,13 +3,13 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Main</title>
+        <!-- BootStrap -->
+		<link rel="stylesheet" href="/common/css/assets/styles.css" />
+		<script src="/common/js/assets/all.js"></script>
         <!-- 공통 컴포넌트 관련파일 include -->
 		<th:block th:include="fragments/headerinc"></th:block>
 		<!-- 해당 화면 script파일 include -->
 		<script src="/web/main/js/main.js"></script>
-		<!-- BootStrap -->
-		<link rel="stylesheet" href="/common/css/assets/styles.css" />
-		<script src="/common/js/assets/all.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <div id="layoutSidenav">
