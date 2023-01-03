@@ -22,10 +22,11 @@ public class ChatWebLoginUserDto extends User {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String userId;
+	private String userEmail;
 	private String usrname;
 	private String authCd;
 	private String useYn;
+	private String custChannelId;
 	
 	
 	/**
@@ -43,6 +44,7 @@ public class ChatWebLoginUserDto extends User {
 								  , String password
 								  , String authCd
 								  , String useYn
+								  , String custChannelId
 								  , boolean enabled
 								  , boolean accountNonExpired
 								  , boolean credentialsNonExpired
@@ -58,10 +60,11 @@ public class ChatWebLoginUserDto extends User {
 			, authorities);
 		
 		// Custom value
-		this.userId = username;
+		this.userEmail = username;
 		this.usrname = usrname;
 		this.authCd = authCd;
 		this.useYn = useYn;
+		this.custChannelId = custChannelId;
 	}
 
 }

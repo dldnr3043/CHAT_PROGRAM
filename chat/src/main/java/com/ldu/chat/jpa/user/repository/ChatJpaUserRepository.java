@@ -1,9 +1,11 @@
 package com.ldu.chat.jpa.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
 
@@ -19,5 +21,14 @@ public interface ChatJpaUserRepository extends JpaRepository<ChatJpaUserEntity, 
 		   + "from ChatJpaUserEntity user "
 		   + "where user.custChannelId = :custChannelId "
 		   + "and user.userEmail = :userEmail")
-	ChatJpaUserEntity selectUserEntity(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail);
+	ChatJpaUserEntity findByChannelIdAndEmail(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+    @Query("update ChatJpaUserEntity user "
+    		+ "set user.loginYn = 'Y' "
+    		+ "where user.custChannelId = :custChannelId "
+    		+ "and user.userEmail = :userEmail")
+	int updateLoginYn(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail);
+	
 }

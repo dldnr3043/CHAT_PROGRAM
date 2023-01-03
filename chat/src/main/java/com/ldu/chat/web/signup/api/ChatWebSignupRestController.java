@@ -46,6 +46,7 @@ public class ChatWebSignupRestController {
     													.userPassword(passwordEncoder.encode(userPassword))
     													.userName(userName)
     													.useYn("Y")
+    													.loginYn("N")
     													.authCd("USER")
     													.custChannelId("1")
     													.build();

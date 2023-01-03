@@ -27,7 +27,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		ChatJpaUserEntity user = userRepository.selectUserEntity("1", userId);
+		ChatJpaUserEntity user = userRepository.findByChannelIdAndEmail("1", userId);
 		
 		if(ObjectUtils.isEmpty(user))
         {
@@ -46,6 +46,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 																					  , user.getUserPassword()
 																					  , user.getAuthCd()
 																					  , user.getUseYn()
+																					  , user.getCustChannelId()
 																					  , isEnabled
 																					  , isAccountNonExpired
 																					  , isCredentialsNonExpired
