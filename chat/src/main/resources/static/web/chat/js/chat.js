@@ -108,11 +108,11 @@ var Chat={
 		ChatApi.axiosPost("/api/chat/chat/selectRtnChatListByUserId", jsonParams, (result) => {
 			// success
 			if(!result.data.ERROR_FLAG) {
-				Chat.createList(result.data);
+				Chat.initChatList(result.data);
 			}
 			// fail
 			else {
-				Chat.createList(result.data);
+				Chat.initChatList(result.data);
 			}
 		});
 	},
@@ -141,7 +141,7 @@ var Chat={
 /********************************************************************************
  * User Functions: 별도 화면 처리를 위해 필요한 함수를 정의한다. 
  ********************************************************************************/
-	createList : function(jsonData) {
+	initChatList : function(jsonData) {
 		// 조회된 데이터가 있을 경우
 		if(!jsonData.ERROR_FLAG) {
 			const ul = document.getElementById('ul');
