@@ -1,4 +1,4 @@
-package com.ldu.chat.jpa.chatroom.entity;
+package com.ldu.chat.jpa.friendlist.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,12 +11,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.ldu.chat.jpa.chatroom.utils.ChatJpaChatRoomPk;
+import com.ldu.chat.jpa.friendlist.utils.ChatJpaFriendListPk;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -39,25 +38,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@IdClass(ChatJpaChatRoomPk.class)
-@Table(name="TB_CHAT_ROOM")
-public class ChatJpaChatRoomEntity implements Serializable {
+@IdClass(ChatJpaFriendListPk.class)
+@Table(name="TB_FRIEND_LIST")
+public class ChatJpaFriendListEntity implements Serializable {
 	
-	private static final long serialVersionUID = -1401693064626249897L;
+	private static final long serialVersionUID = -6686434835255103783L;
 	
 	@Id
-	private String chatRoomId;		// 채팅방id
+	private String userEmail;			// 사용자id
 	@Id
-	private String userEmail;		// 사용자id
+	private String custChannelId;		// 고객사id
 	@Id
-	private String custChannelId;	// 고객사id
-	private String chatRoomName;	// 채팅방명
-	private String chatRoomPurpose;	// 채팅방용도 (10 : 일반, 20 : 일)
-	private String chatRoomState;	// 채팅방상태 (10 : active, 20 : non-active)
-	
+	private String friendUserEmail;		// 친구id
+	@Id
+	private String friendCustChannelId; // 친구고객사id
+	private String chatRoomName;		// 채팅방명
 	
 	@CreationTimestamp
-	private LocalDateTime regDate;	// 생성일시
+	private LocalDateTime regDate;		// 생성일시
 	@UpdateTimestamp
-	private LocalDateTime updDate;	// 수정일시
+	private LocalDateTime updDate;		// 수정일시
 }

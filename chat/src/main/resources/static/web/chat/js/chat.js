@@ -158,8 +158,8 @@ var Chat={
 				
 				imageDiv.innerHTML += '<img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">';
 				imageDiv.innerHTML += '<span class="online_icon"></span>';
-				infoDiv.innerHTML += '<span>' + jsonData.DATA[i].chatRoomName + '</span>';
-				infoDiv.innerHTML += '<p>Taherah left 7 mins ago</p>';
+				infoDiv.innerHTML  += '<span>' + jsonData.DATA[i].chatRoomName + '</span>';
+				infoDiv.innerHTML  += '<p>Taherah left 7 mins ago</p>';
 				
 				frameDiv.appendChild(imageDiv);
 				frameDiv.appendChild(infoDiv);

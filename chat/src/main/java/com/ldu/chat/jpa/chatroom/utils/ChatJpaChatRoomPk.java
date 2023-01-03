@@ -10,4 +10,5 @@ public class ChatJpaChatRoomPk implements Serializable {
 	
 	private String chatRoomId;
 	private String userEmail;
+	private String custChannelId;
 }

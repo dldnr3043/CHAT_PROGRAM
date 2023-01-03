@@ -27,30 +27,30 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		Optional<ChatJpaUserEntity> user = userRepository.findById(userId);
+		ChatJpaUserEntity user = userRepository.selectUserEntity("1", userId);
 		
 		if(ObjectUtils.isEmpty(user))
         {
             throw new BadCredentialsException("Invalid username or password :::");
         }
 		
-		user.get().grantAuthorities(springSecurityAuthUtils.createAuthorities(user.get()));
+		user.grantAuthorities(springSecurityAuthUtils.createAuthorities(user));
 		
-		boolean isEnabled = "Y".equals(user.get().getUseYn()) ? true : false;
+		boolean isEnabled = "Y".equals(user.getUseYn()) ? true : false;
 		boolean isAccountNonExpired = true;
 		boolean isCredentialsNonExpired = true;
 		boolean isAccountNonLocked = true;
 		
-		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.get().getUserEmail()
-																					  , user.get().getUserName()
-																					  , user.get().getUserPassword()
-																					  , user.get().getAuthCd()
-																					  , user.get().getUseYn()
+		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.getUserEmail()
+																					  , user.getUserName()
+																					  , user.getUserPassword()
+																					  , user.getAuthCd()
+																					  , user.getUseYn()
 																					  , isEnabled
 																					  , isAccountNonExpired
 																					  , isCredentialsNonExpired
 																					  , isAccountNonLocked
-																					  , user.get().getAuthorities());
+																					  , user.getAuthorities());
 		
 		return chatWebLoginUserDto;
 	}

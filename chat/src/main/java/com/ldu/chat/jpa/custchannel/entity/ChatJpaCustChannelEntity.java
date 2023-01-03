@@ -32,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="TB_CUST_CHANNEL", schema="CHAT")
+@Table(name="TB_CUST_CHANNEL")
 public class ChatJpaCustChannelEntity implements Serializable {
 	private static final long serialVersionUID = 7235445621609666597L;
 	
