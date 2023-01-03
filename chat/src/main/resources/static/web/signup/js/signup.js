@@ -115,16 +115,15 @@ var ChatSignup={
 		jsonParams.LAST_NAME  = document.getElementById("inputLastName").value;
 		jsonParams.PASSWORD   = document.getElementById("inputPassword").value;
 		
-		const jsonReturnParams  = ChatApi.axiosPost("/api/chat/signup/process", jsonParams);
-		
-		// success
-		if(!jsonReturnParams.ERROR_FLAG) {
-			ChatCommon.moveTo("/chat/web/login");
-		}
-		// fail
-		else {
-			
-		}
+		ChatApi.axiosPost("/api/chat/signup/process", jsonParams, (result) => {
+			// success
+			if(!result.data.ERROR_FLAG) {
+				ChatCommon.moveTo("/chat/web/login");
+			}
+			// fail
+			else {
+			}
+		});
 	},
 		
 //-------------------------------------------------------------------------------

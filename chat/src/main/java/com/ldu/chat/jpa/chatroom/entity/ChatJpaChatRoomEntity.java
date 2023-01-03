@@ -39,7 +39,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Data
 @IdClass(ChatJpaChatRoomPk.class)
 @Table(name="TB_CHAT_ROOM", schema="CHAT")
 public class ChatJpaChatRoomEntity implements Serializable {

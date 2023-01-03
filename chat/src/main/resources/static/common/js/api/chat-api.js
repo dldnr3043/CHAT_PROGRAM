@@ -1,6 +1,6 @@
 var ChatApi = {
-	axiosPost : function(url, jsonData) {
-		return axios({
+	axiosPost : function(url, jsonData, fn) {
+		axios({
 			method  : 'post'
 		  , url     : url
 		  , data    : jsonData
@@ -11,10 +11,10 @@ var ChatApi = {
 			}
 		})
 		.then((success) => {
-			return success;
+			fn(success);
 		})	
 		.catch((error) => {
-			return error;
+			console.log(error);
 		});
 	},
 }

@@ -103,17 +103,18 @@ var Chat={
 		const jsonParams = new Object();
 		
 		//jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
+		jsonParams.USER_EMAIL = 'dldnr3043@naver.com';
 		
-		/*const jsonReturnParams  = ChatApi.axiosPost("/api/chat/chat/selectRtnChatListByUserId", jsonParams);
-		
-		// success
-		if(!jsonReturnParams.ERROR_FLAG) {
-			ChatCommon.moveTo("/chat/web/login");
-		}
-		// fail
-		else {
-			
-		}*/
+		ChatApi.axiosPost("/api/chat/chat/selectRtnChatListByUserId", jsonParams, (result) => {
+			// success
+			if(!result.data.ERROR_FLAG) {
+				Chat.createList(result.data);
+			}
+			// fail
+			else {
+				Chat.createList(result.data);
+			}
+		});
 	},
 //-------------------------------------------------------------------------------
 // PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
@@ -140,7 +141,39 @@ var Chat={
 /********************************************************************************
  * User Functions: 별도 화면 처리를 위해 필요한 함수를 정의한다. 
  ********************************************************************************/
-
+	createList : function(jsonData) {
+		// 조회된 데이터가 있을 경우
+		if(!jsonData.ERROR_FLAG) {
+			const ul = document.getElementById('ul');
+			
+			for(let i=0;i<jsonData.DATA.length;i++) {
+				const li   		   = document.createElement('li');
+				const frameDiv     = document.createElement('div');
+				const imageDiv     = document.createElement('div');
+				const infoDiv 	   = document.createElement('div');
+				
+				frameDiv.setAttribute('class', 'd-flex bd-highlight');
+				imageDiv.setAttribute('class', 'img_cont');
+				infoDiv.setAttribute('class', 'user_info');
+				
+				imageDiv.innerHTML += '<img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">';
+				imageDiv.innerHTML += '<span class="online_icon"></span>';
+				infoDiv.innerHTML += '<span>' + jsonData.DATA[i].chatRoomName + '</span>';
+				infoDiv.innerHTML += '<p>Taherah left 7 mins ago</p>';
+				
+				frameDiv.appendChild(imageDiv);
+				frameDiv.appendChild(infoDiv);
+				
+				li.appendChild(frameDiv);
+				
+				ul.appendChild(li);
+			}
+		}
+		// 조회된 데이터가 없을 경우
+	    else {
+		
+		}
+	},
 /********************************************************************************
  * function Sample
  ********************************************************************************/
