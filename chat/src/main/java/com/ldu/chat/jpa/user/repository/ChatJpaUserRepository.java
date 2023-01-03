@@ -26,9 +26,9 @@ public interface ChatJpaUserRepository extends JpaRepository<ChatJpaUserEntity, 
 	@Transactional
 	@Modifying(clearAutomatically = true)
     @Query("update ChatJpaUserEntity user "
-    		+ "set user.loginYn = 'Y' "
+    		+ "set user.loginYn = :loginYn "
     		+ "where user.custChannelId = :custChannelId "
     		+ "and user.userEmail = :userEmail")
-	int updateLoginYn(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail);
+	int updateLoginYn(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail, @Param("loginYn") String loginYn);
 	
 }

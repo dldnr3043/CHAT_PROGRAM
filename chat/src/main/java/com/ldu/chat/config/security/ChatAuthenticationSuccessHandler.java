@@ -37,7 +37,7 @@ public class ChatAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
         Object principal = authentication.getPrincipal();
         ChatWebLoginUserDto chatWebLoginUserDto = (ChatWebLoginUserDto) principal;
         
-        chatJpaUserRepository.updateLoginYn(chatWebLoginUserDto.getCustChannelId(), chatWebLoginUserDto.getUserEmail());
+        chatJpaUserRepository.updateLoginYn(chatWebLoginUserDto.getCustChannelId(), chatWebLoginUserDto.getUserEmail(), "Y");
         
         //세션 저장
         HttpSession session = request.getSession();
