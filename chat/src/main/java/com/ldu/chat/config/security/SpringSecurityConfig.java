@@ -37,8 +37,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			// url에 대한 authentication 처리
 			.authorizeRequests()
-		    .antMatchers("/chat/web/signup").permitAll()
-		    .antMatchers("/api/chat/signup/process").permitAll()
+		    .antMatchers("/chat/web/signup").permitAll()					// 회원가입 페이지
+		    .antMatchers("/api/chat/signup/**").permitAll()					// 회원가입 관련 api
+		    .antMatchers("/api/chat/common/selectAllUsedCustChannel").permitAll()	// 전체 고객사리스트 조회 api
 		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
 		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
 		    .anyRequest()

@@ -2,7 +2,6 @@ package com.ldu.chat.jpa.custchannel.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,9 +9,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-
-import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

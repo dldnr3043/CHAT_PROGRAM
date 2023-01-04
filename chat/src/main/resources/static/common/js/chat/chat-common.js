@@ -15,8 +15,20 @@ var ChatCommon = {
 		iframeElement.setAttribute('src', url);
 	},
 	
-	// ul, li 생성
-	createList : function() {
+	// 전체 고객사 리스트 조회
+	selectAllUsedCustChannel : function(fn) {
+		const jsonParams = new Object();
 		
+		ChatApi.axiosPost("/api/chat/common/selectAllUsedCustChannel", jsonParams, (result) => {
+			// success
+			if(!result.data.ERROR_FLAG) {
+				fn(result);
+			}
+			// fail
+			else {
+				alert("고객사리스트 조회하는데 실패했습니다.");
+				fn(result);
+			}
+		});
 	},
 }
