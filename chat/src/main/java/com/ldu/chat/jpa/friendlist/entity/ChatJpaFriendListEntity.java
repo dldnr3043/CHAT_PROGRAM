@@ -47,11 +47,7 @@ public class ChatJpaFriendListEntity implements Serializable {
 	@Id
 	private String userEmail;			// 사용자id
 	@Id
-	private String custChannelId;		// 고객사id
-	@Id
 	private String friendUserEmail;		// 친구id
-	@Id
-	private String friendCustChannelId; // 친구고객사id
 	private String chatRoomName;		// 채팅방명
 	
 	@CreationTimestamp

@@ -16,7 +16,6 @@ import com.ldu.chat.jpa.chatroom.utils.ChatJpaChatRoomPk;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -49,7 +48,6 @@ public class ChatJpaChatRoomEntity implements Serializable {
 	private String chatRoomId;		// 채팅방id
 	@Id
 	private String userEmail;		// 사용자id
-	@Id
 	private String custChannelId;	// 고객사id
 	private String chatRoomName;	// 채팅방명
 	private String chatRoomPurpose;	// 채팅방용도 (10 : 일반, 20 : 일)

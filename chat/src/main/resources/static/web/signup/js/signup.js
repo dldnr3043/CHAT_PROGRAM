@@ -126,10 +126,11 @@ var ChatSignup={
 	processSignup : function() {
 		const jsonParams = new Object();
 		
-		jsonParams.USER_EMAIL = document.getElementById("inputEmail").value;
-		jsonParams.FIRST_NAME = document.getElementById("inputFirstName").value;
-		jsonParams.LAST_NAME  = document.getElementById("inputLastName").value;
-		jsonParams.PASSWORD   = document.getElementById("inputPassword").value;
+		jsonParams.CUST_CHANNEL_ID = document.getElementById("selectCustChannel").value
+		jsonParams.USER_EMAIL      = document.getElementById("inputEmail").value;
+		jsonParams.FIRST_NAME      = document.getElementById("inputFirstName").value;
+		jsonParams.LAST_NAME       = document.getElementById("inputLastName").value;
+		jsonParams.PASSWORD  	   = document.getElementById("inputPassword").value;
 		
 		ChatApi.axiosPost("/api/chat/signup/process", jsonParams, (result) => {
 			// success

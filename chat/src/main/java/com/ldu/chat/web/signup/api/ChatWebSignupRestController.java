@@ -35,11 +35,12 @@ public class ChatWebSignupRestController {
     public Object processRtnSignUp(@RequestBody JSONObject jsonParams) throws Exception
     {
     	JSONObject jsonReturnParams = new JSONObject();
-    	String userEmail    = jsonParams.getString("USER_EMAIL");
-    	String userPassword = jsonParams.getString("PASSWORD");
-    	String userName     = jsonParams.getString("FIRST_NAME")
-    			            + " "
-    			            + jsonParams.getString("LAST_NAME");
+    	String custChannelId = jsonParams.getString("CUST_CHANNEL_ID");
+    	String userEmail     = jsonParams.getString("USER_EMAIL");
+    	String userPassword  = jsonParams.getString("PASSWORD");
+    	String userName      = jsonParams.getString("FIRST_NAME")
+    			             + " "
+    			             + jsonParams.getString("LAST_NAME");
     	
     	ChatJpaUserEntity userEntity = ChatJpaUserEntity.builder()
     													.userEmail(userEmail)
@@ -48,7 +49,7 @@ public class ChatWebSignupRestController {
     													.useYn("Y")
     													.loginYn("N")
     													.authCd("USER")
-    													.custChannelId("1")
+    													.custChannelId(custChannelId)
     													.build();
     			
     	

@@ -6,7 +6,6 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -14,8 +13,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
-
-import com.ldu.chat.jpa.user.utils.ChatJpaUserPk;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,7 +39,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@IdClass(ChatJpaUserPk.class)
 @Table(name="TB_USER")
 public class ChatJpaUserEntity implements Serializable {
 	
@@ -50,7 +46,6 @@ public class ChatJpaUserEntity implements Serializable {
 	
 	@Id
 	private String userEmail;		// 사용자 email
-	@Id
 	private String custChannelId;	// 고객사id
 	private String userName;		// 사용자명
 	private String userPassword;	// 비밀번호
