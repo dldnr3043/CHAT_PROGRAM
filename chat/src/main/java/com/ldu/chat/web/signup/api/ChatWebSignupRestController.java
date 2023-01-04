@@ -35,7 +35,6 @@ public class ChatWebSignupRestController {
     public Object processRtnSignUp(@RequestBody JSONObject jsonParams) throws Exception
     {
     	JSONObject jsonReturnParams = new JSONObject();
-    	String custChannelId = jsonParams.getString("CUST_CHANNEL_ID");
     	String userEmail     = jsonParams.getString("USER_EMAIL");
     	String userPassword  = jsonParams.getString("PASSWORD");
     	String userName      = jsonParams.getString("FIRST_NAME")
@@ -49,7 +48,7 @@ public class ChatWebSignupRestController {
     													.useYn("Y")
     													.loginYn("N")
     													.authCd("USER")
-    													.custChannelId(custChannelId)
+    													.custChannelId("NONE")
     													.build();
     			
     	

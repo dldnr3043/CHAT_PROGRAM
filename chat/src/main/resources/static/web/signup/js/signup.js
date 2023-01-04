@@ -75,22 +75,6 @@ var ChatSignup={
 // COMBO BOX: 콤보박스 구성을 위한 함수 정의 [기본함수명:makeComboBox + (구분단어)]
 //-------------------------------------------------------------------------------
 	makeComboBox: function(){
-		
-		ChatCommon.selectAllUsedCustChannel((result) => {
-			// success
-			if(!result.data.ERROR_FLAG) {
-				const select = document.getElementById('selectCustChannel');
-				
-				for(let i=0;i<result.data.DATA.length;i++) {
-					select.innerHTML += '<option value="' + result.data.DATA[i].custChannelId + '">'
-														  + result.data.DATA[i].custChannelName
-													      + '</option>';
-				}
-			}
-			// fail
-			else {
-			}
-		});
 	},	
 //-------------------------------------------------------------------------------
 // LOAD_DATA: 초기데이터 로드를 위한 함수 정의 [기본함수명:initData + (구분단어)]
@@ -126,7 +110,6 @@ var ChatSignup={
 	processSignup : function() {
 		const jsonParams = new Object();
 		
-		jsonParams.CUST_CHANNEL_ID = document.getElementById("selectCustChannel").value
 		jsonParams.USER_EMAIL      = document.getElementById("inputEmail").value;
 		jsonParams.FIRST_NAME      = document.getElementById("inputFirstName").value;
 		jsonParams.LAST_NAME       = document.getElementById("inputLastName").value;

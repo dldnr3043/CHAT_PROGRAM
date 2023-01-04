@@ -27,7 +27,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		ChatJpaUserEntity user = userRepository.findByChannelIdAndEmail("1", userId);
+		ChatJpaUserEntity user = userRepository.findByUserEmail(userId);
 		
 		if(ObjectUtils.isEmpty(user))
         {
@@ -42,16 +42,16 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 		boolean isAccountNonLocked = true;
 		
 		ChatWebLoginUserDto chatWebLoginUserDto = new ChatWebLoginUserDto(user.getUserEmail()
-																					  , user.getUserName()
-																					  , user.getUserPassword()
-																					  , user.getAuthCd()
-																					  , user.getUseYn()
-																					  , user.getCustChannelId()
-																					  , isEnabled
-																					  , isAccountNonExpired
-																					  , isCredentialsNonExpired
-																					  , isAccountNonLocked
-																					  , user.getAuthorities());
+																	    , user.getUserName()
+																	    , user.getUserPassword()
+																	    , user.getAuthCd()
+																	    , user.getUseYn()
+																	    , user.getCustChannelId()
+																  	    , isEnabled
+																	    , isAccountNonExpired
+																	    , isCredentialsNonExpired
+																	    , isAccountNonLocked
+																	    , user.getAuthorities());
 		
 		return chatWebLoginUserDto;
 	}

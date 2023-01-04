@@ -17,11 +17,7 @@ import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
  */
 @Repository
 public interface ChatJpaUserRepository extends JpaRepository<ChatJpaUserEntity, String> {
-	@Query("select user "
-		   + "from ChatJpaUserEntity user "
-		   + "where user.custChannelId = :custChannelId "
-		   + "and user.userEmail = :userEmail")
-	ChatJpaUserEntity findByChannelIdAndEmail(@Param("custChannelId") String custChannelId, @Param("userEmail") String userEmail);
+	ChatJpaUserEntity findByUserEmail(String userEmail);
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
