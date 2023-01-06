@@ -25,21 +25,28 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatWebLoginAuthUtils {
 	
 	/**
-     * 
-     * @param username
-     * @return
-     */
+	 * ADMIN : 관리자
+	 * USER  : 일반사용자
+	 * NONE  : 초기권한없음
+	 * 
+	 * @param user
+	 * @return
+	 */
     public Collection<? extends GrantedAuthority> createAuthorities(ChatJpaUserEntity user)
     {
     	final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
     	
-    	// 관리자인 경우 일반사용자 권한도 획득
     	if("ADMIN".equals(user.getAuthCd())) {
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.ADMIN));
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.NONE));
     	}
     	else if("USER".equals(user.getAuthCd())) {
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.NONE));
+    	}
+    	else if("NONE".equals(user.getAuthCd())) {
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.NONE));
     	}
     	
         return authorities;         

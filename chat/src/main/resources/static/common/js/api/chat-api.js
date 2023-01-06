@@ -15,6 +15,7 @@ var ChatApi = {
 		})	
 		.catch((error) => {
 			console.log(error);
+			fn(error);
 		});
 	},
 }

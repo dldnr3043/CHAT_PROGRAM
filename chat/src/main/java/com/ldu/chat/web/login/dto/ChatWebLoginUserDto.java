@@ -26,6 +26,7 @@ public class ChatWebLoginUserDto extends User {
 	private String usrname;
 	private String authCd;
 	private String useYn;
+	private String loginYn;
 	private String custChannelId;
 	
 	
@@ -44,6 +45,7 @@ public class ChatWebLoginUserDto extends User {
 								  , String password
 								  , String authCd
 								  , String useYn
+								  , String loginYn
 								  , String custChannelId
 								  , boolean enabled
 								  , boolean accountNonExpired
@@ -64,6 +66,7 @@ public class ChatWebLoginUserDto extends User {
 		this.usrname = usrname;
 		this.authCd = authCd;
 		this.useYn = useYn;
+		this.loginYn = loginYn;
 		this.custChannelId = custChannelId;
 	}
 

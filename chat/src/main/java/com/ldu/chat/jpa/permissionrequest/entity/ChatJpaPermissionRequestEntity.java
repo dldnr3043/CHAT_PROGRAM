@@ -1,18 +1,19 @@
-package com.ldu.chat.jpa.friendlist.entity;
+package com.ldu.chat.jpa.permissionrequest.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.ldu.chat.jpa.friendlist.utils.ChatJpaFriendListPk;
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * User Entity
+ * Permission Request Entity
  * 
  * jpa는 기본생성자를 요구
  * ㄴ @Entity에는 기본생성자 자동 생성이 있음
@@ -39,18 +40,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@IdClass(ChatJpaFriendListPk.class)
-@Table(name="TB_FRIEND_LIST")
-public class ChatJpaFriendListEntity implements Serializable {
+@Table(name="TB_PERMISSION_REQUEST")
+public class ChatJpaPermissionRequestEntity implements Serializable {
 	
-	private static final long serialVersionUID = -6686434835255103783L;
+	private static final long serialVersionUID = -4682325845411542596L;
 	
 	@Id
-	private String userEmail;			// 사용자id
-	@Id
-	private String friendUserEmail;		// 친구id
-	private String chatRoomName;		// 채팅방명
-	
+	private String userEmail;		// 사용자 email
+	private String custChannelId;	// 고객사id
 	@CreationTimestamp
 	@Column(insertable=true, updatable=false)
 	private LocalDateTime regDate;	// 생성일시

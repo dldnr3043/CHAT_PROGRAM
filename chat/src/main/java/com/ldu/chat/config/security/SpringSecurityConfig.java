@@ -41,7 +41,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .antMatchers("/api/chat/signup/**").permitAll()					// 회원가입 관련 api
 		    .antMatchers("/api/chat/common/selectAllUsedCustChannel").permitAll()	// 전체 고객사리스트 조회 api
 		    .antMatchers("/chat/web/admin/**").hasRole(ChatWebLoginRoleEnum.CODES.ADMIN)
-		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
+		    .antMatchers("/chat/web/user/**").hasRole(ChatWebLoginRoleEnum.CODES.USER)
+		    .antMatchers("/**").hasRole(ChatWebLoginRoleEnum.CODES.NONE)
 		    .anyRequest()
 		    .authenticated()
 		    // login 설정

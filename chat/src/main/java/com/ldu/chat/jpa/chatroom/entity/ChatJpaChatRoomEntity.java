@@ -3,6 +3,7 @@ package com.ldu.chat.jpa.chatroom.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -53,9 +54,10 @@ public class ChatJpaChatRoomEntity implements Serializable {
 	private String chatRoomPurpose;	// 채팅방용도 (10 : 일반, 20 : 일)
 	private String chatRoomState;	// 채팅방상태 (10 : active, 20 : non-active)
 	
-	
 	@CreationTimestamp
+	@Column(insertable=true, updatable=false)
 	private LocalDateTime regDate;	// 생성일시
 	@UpdateTimestamp
+	@Column(insertable=true, updatable=true)
 	private LocalDateTime updDate;	// 수정일시
 }

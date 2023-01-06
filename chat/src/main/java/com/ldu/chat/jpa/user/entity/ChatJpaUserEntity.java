@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -49,17 +50,16 @@ public class ChatJpaUserEntity implements Serializable {
 	private String custChannelId;	// 고객사id
 	private String userName;		// 사용자명
 	private String userPassword;	// 비밀번호
-	@ColumnDefault("USER")
 	private String authCd;			// 사용자권한 (ADMIN, USER)
-	@ColumnDefault("Y")
 	private String useYn;			// 사용여부
-	@ColumnDefault("N")
 	private String loginYn;			// 로그인여부
 	
 	
 	@CreationTimestamp
+	@Column(insertable=true, updatable=false)
 	private LocalDateTime regDate;	// 생성일시
 	@UpdateTimestamp
+	@Column(insertable=true, updatable=true)
 	private LocalDateTime updDate;	// 수정일시
 	
 	@Transient

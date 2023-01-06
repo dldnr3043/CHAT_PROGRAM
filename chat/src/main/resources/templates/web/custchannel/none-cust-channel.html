@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>None CustChannel</title>
+        <!-- BootStrap -->
+		<link rel="stylesheet" href="/common/css/assets/styles.css" />
+		<script src="/common/js/assets/all.js"></script>
+        <!-- 공통 컴포넌트 관련파일 include -->
+		<th:block th:include="fragments/headerinc"></th:block>
+		<!-- 해당 화면 script파일 include -->
+		<script src="/web/custchannel/js/none-cust-channel.js"></script>
+    </head>
+    <body class="bg-secondary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Send Permission Request</h3></div>
+                                    <div class="card-body">
+                                         <div class="form-floating mb-3">
+                                             <select class="form-control" id="selectCustChannel"></select>
+                                             <label for="selectCustChannel">CustChannel List</label>
+                                         </div>
+                                         <div class="mt-4 mb-0">
+                                             <div class="d-grid"><button class="btn btn-dark btn-block" id="btnSendPermissionRequest">Send Request</button></div>
+                                         </div>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

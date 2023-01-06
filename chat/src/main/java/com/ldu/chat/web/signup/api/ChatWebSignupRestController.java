@@ -21,7 +21,7 @@ public class ChatWebSignupRestController {
 	
 	@Autowired
     private final PasswordEncoder	    passwordEncoder;
-	private final ChatJpaUserRepository userRepository;
+	private final ChatJpaUserRepository chatJpaUserRepository;
 	
 	/**
 	 * 회원가입
@@ -47,12 +47,12 @@ public class ChatWebSignupRestController {
     													.userName(userName)
     													.useYn("Y")
     													.loginYn("N")
-    													.authCd("USER")
+    													.authCd("NONE")
     													.custChannelId("NONE")
     													.build();
     			
     	
-    	ChatJpaUserEntity result = userRepository.save(userEntity);
+    	ChatJpaUserEntity result = chatJpaUserRepository.save(userEntity);
     	if(result != null) {
     		jsonReturnParams.put("ERROR_FLAG", false);
     	}

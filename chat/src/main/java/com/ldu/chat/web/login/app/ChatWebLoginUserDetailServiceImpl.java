@@ -46,6 +46,7 @@ public class ChatWebLoginUserDetailServiceImpl implements UserDetailsService {
 																	    , user.getUserPassword()
 																	    , user.getAuthCd()
 																	    , user.getUseYn()
+																	    , user.getLoginYn()
 																	    , user.getCustChannelId()
 																  	    , isEnabled
 																	    , isAccountNonExpired

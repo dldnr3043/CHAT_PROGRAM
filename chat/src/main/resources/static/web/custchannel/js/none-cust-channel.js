@@ -1,19 +1,20 @@
 /********************************************************************************
-* @classDescription 메인화면
+* @classDescription 권한 요청 보내기
 * @author LDU.
 * @version 1.0
 * -------------------------------------------------------------------------------
 * Modification Information
 * Date              Developer           Content
 * ----------        -------------       -------------------------
-* 2022.12.22                  이동욱           			신규생성 
+* 2023.01.05                   이동욱           			 신규생성 
 * -------------------------------------------------------------------------------
-* Copyright (C) 2022 by LDU. All rights reserved.
+* Copyright (C) 2023 by LDU. All rights reserved.
 *********************************************************************************/
 
 /********************************************************************************
  * Global constiable : 스크립트 영역에서 모두 접근할 수 있는 전역변수를 해당 영역에 모두 정의한다.
  ********************************************************************************/
+var globalconstiable = "";
 
 /********************************************************************************
  * Document Ready : jquery에서 제공하는 함수를 이용하여 화면이 로드될 때 처리할 함수를 정의한다.
@@ -21,9 +22,9 @@
 function domReady()
 {
 	//페이지 초기화 처리
-	ChatMain.initPage();
+	ChatNoneCustChannel.initPage();
 	//이벤트 정의	
-	ChatMain.defineEvent();
+	ChatNoneCustChannel.defineEvent();
 };
 
 /**
@@ -31,7 +32,7 @@ function domReady()
  * 스크립트를 클래스 기반의 구조체로 정의하기 위해 해당 JavaScript의 클래스명은 파일명으로 정의한다.
  * @classDescription : 
  */
-var ChatMain={
+var ChatNoneCustChannel={
 /********************************************************************************
  * InitPage Function : 화면이 초기 로드 시점에 처리할 사항을 정의한다.
  ********************************************************************************/
@@ -48,8 +49,6 @@ var ChatMain={
 		this.makeComboBox();
 		//초기데이터설정
 		this.initData();
-		//초기iframe설정
-		this.initIframe();
 	},
 
 //-------------------------------------------------------------------------------
@@ -76,6 +75,16 @@ var ChatMain={
 // COMBO BOX: 콤보박스 구성을 위한 함수 정의 [기본함수명:makeComboBox + (구분단어)]
 //-------------------------------------------------------------------------------
 	makeComboBox: function(){
+		ChatCommon.selectAllUsedCustChannel((result) => {
+			const custChannelList = result.data;
+			const select = document.getElementById('selectCustChannel');
+			select.innerHTML += "<option value='선택'>선택</option>";
+			
+			for(let i=0;i<custChannelList.DATA.length;i++) {
+				select.innerHTML += "<option value='" + custChannelList.DATA[i].custChannelId + "'>" + custChannelList.DATA[i].custChannelName + "</option>"
+			}
+			
+		});
 	},	
 //-------------------------------------------------------------------------------
 // LOAD_DATA: 초기데이터 로드를 위한 함수 정의 [기본함수명:initData + (구분단어)]
@@ -87,8 +96,7 @@ var ChatMain={
  * Event Object : 화면에 디자인 된 버튼 및 오브젝트 이벤트와 호출할 함수를 정의한다.
  ********************************************************************************/
 	defineEvent: function(){
-		document.getElementById("btnLogout").addEventListener("click", function(e) {ChatMain.processLogout();}); // login
-	
+		document.getElementById("btnSendPermissionRequest").addEventListener("click", function(e) {ChatNoneCustChannel.processSendPermissionRequest();}); // Signup
 	},
 /********************************************************************************
  * Main Functions: 화면상에 주요 기능을 처리하는 함수를 정의한다.
@@ -106,9 +114,23 @@ var ChatMain={
 //-------------------------------------------------------------------------------
 // PROCESS: 처리 데이터 (데이터 신규, 데이터 수정)에 대한 함수 정의 [기본함수명:processRtn + (구분단어), insertRtn + (구분단어),updateRtn + (구분단어)]
 //-------------------------------------------------------------------------------
-	//로그인 처리(자체 인증 프로세스 : Spring Security Form)
-	processLogout: function() {
-		document.getElementById("frmLogout").submit();
+	processSendPermissionRequest : function() {
+		const jsonParams = new Object();
+		
+		jsonParams.USER_EMAIL      = Session.getUserEmail();
+		jsonParams.CUST_CHANNEL_ID = document.getElementById("selectCustChannel").value;
+		
+		ChatApi.axiosPost("/api/chat/cust-channel/processSendPermissionRequest", jsonParams, (result) => {
+			// success
+			if(!result.data.ERROR_FLAG) {
+				alert(MSG.SUCCESS_SEND_PERMISSION_REQUEST);
+				console.log("test")
+			}
+			// fail
+			else {
+				alert(MSG.FAIL_SEND_PERMISSION_REQUEST);
+			}
+		});
 	},
 		
 //-------------------------------------------------------------------------------
@@ -130,18 +152,8 @@ var ChatMain={
 /********************************************************************************
  * User Functions: 별도 화면 처리를 위해 필요한 함수를 정의한다. 
  ********************************************************************************/
-	/**
-	 * 현재 회원가입 후 초기상태(NONE)인지 custChannelId가 정해졌는지에 따라 초기 화면 세팅
-	 */
-	initIframe : function(){
-		const iframeElement = document.getElementById('iframe');
-		
-		if(Session.getAuthCd() == 'NONE') {
-			iframeElement.setAttribute('src', '/chat/web/none-cust-channel');
-		}
-		else {
-			iframeElement.setAttribute('src', '/chat/web/user/chat');
-		}
+
+	userFunctions: function(event){
 	},
 
 /********************************************************************************

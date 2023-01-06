@@ -12,7 +12,7 @@ public class ChatWebChatController {
 	 * Chatting Page
 	 * @return
 	 */
-	@GetMapping(value = "/chat/web/chat")
+	@GetMapping(value = "/chat/web/user/chat")
 	public String moveChat() {
 		log.debug("moveChat");
 		return "web/chat/chat";

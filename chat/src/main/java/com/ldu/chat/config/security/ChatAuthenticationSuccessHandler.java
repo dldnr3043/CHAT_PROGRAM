@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import com.ldu.chat.jpa.user.entity.ChatJpaUserEntity;
 import com.ldu.chat.jpa.user.repository.ChatJpaUserRepository;
 import com.ldu.chat.web.login.dto.ChatWebLoginUserDto;
 
@@ -41,7 +40,13 @@ public class ChatAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
         
         //세션 저장
         HttpSession session = request.getSession();
-        session.setAttribute("USER_ID", chatWebLoginUserDto.getUsrname());
+        StringBuffer sb = new StringBuffer(); 
+        sb.append(chatWebLoginUserDto.getUserEmail()).append("|")
+          .append(chatWebLoginUserDto.getCustChannelId()).append("|")
+          .append(chatWebLoginUserDto.getUsrname()).append("|")
+          .append(chatWebLoginUserDto.getAuthCd());
+        
+        session.setAttribute("SESSION_INFO", sb.toString());
         
         super.onAuthenticationSuccess(request, response, authentication);
     }

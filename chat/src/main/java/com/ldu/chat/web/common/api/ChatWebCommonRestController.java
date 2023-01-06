@@ -22,13 +22,13 @@ public class ChatWebCommonRestController {
 	private final ChatJpaCustChannelRepository chatJpaCustChannelRepository;
 
 	/**
-	 * 고객사리스트 조회
+	 * 사용중인 전체 고객사리스트 조회
 	 * 
 	 * @param jsonParams
 	 * @return
 	 * @throws Exception
 	 */
-    @ApiOperation(value="고객사리스트 조회", notes="고객사리스트 조회")
+    @ApiOperation(value="사용중인 전체 고객사리스트 조회", notes="사용중인 전체 고객사리스트 조회")
     @PostMapping("/api/chat/common/selectAllUsedCustChannel")
     public Object selectAllUsedCustChannel(@RequestBody JSONObject jsonParams) throws Exception
     {

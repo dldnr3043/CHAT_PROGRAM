@@ -12,6 +12,7 @@
 		<script src="/web/main/js/main.js"></script>
     </head>
     <body class="sb-nav-fixed">
+    	<input type="hidden" id="txtSessionInfo" name="txtSessionInfo" th:value='${session["SESSION_INFO"]}' />
         <div id="layoutSidenav">
             <th:block th:include="common/sidebar"></th:block>
             <div id="layoutSidenav_content">

@@ -3,6 +3,7 @@ package com.ldu.chat.jpa.custchannel.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -38,7 +39,9 @@ public class ChatJpaCustChannelEntity implements Serializable {
 	private String useYn;					// 사용여부
 	
 	@CreationTimestamp
+	@Column(insertable=true, updatable=false)
 	private LocalDateTime regDate;	// 생성일시
 	@UpdateTimestamp
+	@Column(insertable=true, updatable=true)
 	private LocalDateTime updDate;	// 수정일시
 }
