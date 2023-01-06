@@ -1,18 +1,17 @@
-package com.ldu.chat.jpa.chatroom.entity;
+package com.ldu.chat.jpa.menu.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.ldu.chat.jpa.chatroom.utils.ChatJpaChatRoomPk;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -39,30 +38,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@IdClass(ChatJpaChatRoomPk.class)
-@Table(name="TB_CHAT_ROOM")
-public class ChatJpaChatRoomEntity implements Serializable {
+@Table(name="TB_MENU")
+public class ChatJpaMenuEntity implements Serializable {
 	
-	private static final long serialVersionUID = -1401693064626249897L;
+	private static final long serialVersionUID = -1398842651571021405L;
 	
 	@Id
-	private String chatRoomId;		// 채팅방id
-	@Id
-	private String userEmail;		// 사용자id
-	private String custChannelId;	// 고객사id
-	private String chatRoomName;	// 채팅방명
-	private String chatRoomPurpose;	// 채팅방용도 (10 : 일반, 20 : 일)
-	private String chatRoomState;	// 채팅방상태 (10 : active, 20 : non-active)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String menuId;						// 메뉴id
+	private String menuUrl;						// 메뉴url
+	private String upperMenuId;					// 상위메뉴id
+	private int	   menuDepth;					// 메뉴depth
 	
 	@Column(insertable=true, updatable=false)
-	private String regUserId;				// 생성자
+	private String regUserId;					// 생성자
 	@Column(insertable=true, updatable=true)
-	private String updUSerId;				// 수정자
+	private String updUSerId;					// 수정자
 	
 	@CreationTimestamp
 	@Column(insertable=true, updatable=false)
-	private LocalDateTime regDate;	// 생성일시
+	private LocalDateTime regDate;				// 생성일시
 	@UpdateTimestamp
 	@Column(insertable=true, updatable=true)
-	private LocalDateTime updDate;	// 수정일시
+	private LocalDateTime updDate;				// 수정일시
 }

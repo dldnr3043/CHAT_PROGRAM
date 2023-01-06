@@ -38,6 +38,11 @@ public class ChatJpaCustChannelEntity implements Serializable {
 	private String custChannelName;		    // 고객사명
 	private String useYn;					// 사용여부
 	
+	@Column(insertable=true, updatable=false)
+	private String regUserId;				// 생성자
+	@Column(insertable=true, updatable=true)
+	private String updUSerId;				// 수정자
+	
 	@CreationTimestamp
 	@Column(insertable=true, updatable=false)
 	private LocalDateTime regDate;	// 생성일시
