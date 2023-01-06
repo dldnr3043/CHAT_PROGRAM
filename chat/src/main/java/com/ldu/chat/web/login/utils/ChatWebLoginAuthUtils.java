@@ -36,7 +36,13 @@ public class ChatWebLoginAuthUtils {
     {
     	final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
     	
-    	if("ADMIN".equals(user.getAuthCd())) {
+    	if("SYSTEM".equals(user.getAuthCd())) {
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.SYSTEM));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.ADMIN));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
+    		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.NONE));
+    	}
+    	else if("ADMIN".equals(user.getAuthCd())) {
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.ADMIN));
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.USER));
     		authorities.add(new SimpleGrantedAuthority(ChatWebLoginRoleEnum.ROLES.NONE));
